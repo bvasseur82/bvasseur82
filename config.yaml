@@ -1,7 +1,7 @@
 theme: starter-academic
-title: Academic
+title: 'Benoit Vasseur'
 baseurl: 'https://bvasseur.netlify.app/'
-copyright: ''
+copyright: '&copy; Benoit Vasseur {year}'
 enableGitInfo: no
 defaultContentLanguage: en
 hasCJKLanguage: no
