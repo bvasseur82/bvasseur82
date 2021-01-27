@@ -1,0 +1,16 @@
+  
+# Font style metadata
+name = "benoit"
+
+# Optional Google font URL
+google_fonts = "Playfair+Display:400,400i|Raleway:400,700|Roboto+Mono|Anaheim"
+
+# Font families
+heading_font = "Playfair Display"
+body_font = "Anaheim"
+nav_font = "Raleway"
+mono_font = "Roboto Mono"
+
+# Font size
+font_size = "18"
+font_size_small = "16"
