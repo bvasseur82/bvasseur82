@@ -48,7 +48,7 @@ markup:
     startLevel: 2
 imaging:
   anchor: smart
-  quality: 75
+  quality: 90
   resampleFilter: lanczos
 taxonomies:
   author: authors
