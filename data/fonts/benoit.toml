@@ -3,13 +3,13 @@
 name = "benoit"
 
 # Optional Google font URL
-google_fonts = "Playfair+Display:400,400i|Raleway:400,700|Roboto+Mono|Anaheim"
+google_fonts = "Anaheim"
 
 # Font families
-heading_font = "Playfair Display"
+heading_font = "Anaheim"
 body_font = "Anaheim"
-nav_font = "Raleway"
-mono_font = "Roboto Mono"
+nav_font = "Anaheim"
+mono_font = "Anaheim"
 
 # Font size
 font_size = "18"
