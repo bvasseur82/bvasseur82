@@ -28,6 +28,31 @@ knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE,
                       tidy = "styler", fig.width = 8, fig.height = 5)
 library(scales)
 library(tidyverse)
+library(RCurl)
+library(readxl)
+library(dplyr)
+library(openxlsx)
+library(httr)
+library(XML)
+library(rvest)
+library(janitor)
+library(purrr)
+library(stargazer)
+
+## Create function to retrieve statistics from PGA website
+get_all_data <- function(stat, year = 2018){
+  pga_data_urls <- paste("https://www.pgatour.com/content/pgatour/stats/stat.",
+                       stat, ".y",
+                       year,
+                       ".html",
+                       sep = "")
+  pg <- read_html(pga_data_urls)
+  tables <- html_nodes(pg, "table")
+  stat_data <- data.frame(html_table(tables))
+  names(stat_data)[names(stat_data)=="X3"] <- "Year"
+  stat_data[3] <- year
+  return(stat_data)
+}
 ```
 
 [Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.`r emo::ji("golf")`
@@ -40,3 +65,35 @@ knitr::include_graphics("as_masters.jpg")
 
 ## Explore the data
 
+Throughout this post we use data available on the [PGA tour website](https://www.pgatour.com/stats.html). When comparing to the field, we use data starting year 2000. We compile this data and process it using R. If you are curious of how data could be efficiently retrieved, please refer to the work done by [Jacob Dubbert](https://github.com/jdubbert/Scrape-golf-data-from-web).
+
+### How does Adam Scott rank compared to peers?
+
+Here are the 10 players who the most on the PGA tour since 2000:
+```{r, echo = FALSE}
+#Get Top 10 Finishes and Wins `top_10` `wins`
+top10_list <- lapply(2000:2021, get_all_data, stat="138")
+top10_indx <- lengths(top10_list)
+top10_all <- as.data.frame(do.call(rbind,lapply(top10_list, `length<-`, max(top10_indx))))
+top10_all <- subset(top10_all, select = c("Year", "PLAYER.NAME", "TOP.10", "X1ST")) %>% clean_names() 
+names(top10_all)[names(top10_all)=="x1st"] <- "wins"
+top10_all$wins[is.na(top10_all$wins)] <- 0
+top10_all$top_10[is.na(top10_all$top_10)] <- 0
+top10 <- top10_all %>% group_by(player_name) %>% summarise(wins=sum(wins),top_10 = sum(top_10)) %>% arrange(-wins) %>% head(10)
+top10
+```
+Adam is 6th on the list with 14 wins. Let's look at how it translates in terms of scoring average:
+
+```{r, echo=FALSE}
+sa_list <- lapply(2000:2021, get_all_data, stat="120")
+sa_indx <- lengths(sa_list)
+score_avg_all <- as.data.frame(do.call(rbind,lapply(sa_list, `length<-`, max(sa_indx))))
+score_avg_all <- subset(score_avg_all, select = c("Year", "PLAYER.NAME", "AVG", "ROUNDS")) %>% clean_names() 
+names(score_avg_all)[names(score_avg_all)=="avg"] <- "score_average"
+score_avg <- score_avg_all %>% mutate(score_average=score_average * rounds) %>% group_by(player_name) %>% summarise(rounds=sum(rounds),score_average=sum(score_average)/sum(rounds))  %>% arrange(score_average) %>% filter(rounds>=500) %>% head(16)
+score_avg
+```
+
+Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers. 
+
+A better way to compare is to use the strokes gained metric.

@@ -10,3 +10,13 @@ purrr
 dplyr
 stringr
 forcats
+RCurl
+readxl
+openxlsx
+httr
+XML
+xml2
+rvest
+janitor
+stargazer
+gt
