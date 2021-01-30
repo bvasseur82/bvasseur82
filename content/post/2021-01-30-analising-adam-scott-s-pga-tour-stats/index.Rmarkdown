@@ -30,70 +30,13 @@ library(scales)
 library(tidyverse)
 ```
 
-[Adam Scott] (https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.
+[Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.`r emo::ji("golf")`
 
-First, let's enjoy Adam Scott's Masters victory in 2013! `r emo::ji("golf")`
-
-```{r, echo=FALSE}
-blogdown::shortcode("youtube", "08HvndZs09I")
+```{r photo, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("as_masters.jpg")
 ```
-
-</br>
-
-Here is the code I used in the video, for those who prefer reading instead of or in addition to video.
+*Photo by Harry How/Getty Images*  
+  
 
 ## Explore the data
 
-Our modeling goal is to estimate the relationship of [expected tournament wins by seed from this week's #TidyTuesday dataset](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-10-06/readme.md). This is similar to the ["average" column in the FiveThirtyEight table in this article](https://fivethirtyeight.com/features/tom-izzo-is-the-best-coach-in-modern-ncaa-tournament-history-by-far/). This was what I was most interested in when I saw this data, but I was pretty confused about what was going on this table at first! Many thanks to [Tom Mock](https://themockup.blog/) for helping out my understanding.
-
-Let's start by reading in the data.
-
-```{r}
-library(tidyverse)
-tournament <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-06/tournament.csv')
-
-tournament
-```
-
-We can look at the mean wins by seed.
-
-```{r}
-tournament %>%
-  group_by(seed) %>% 
-  summarise(exp_wins = mean(tourney_w, na.rm = TRUE)) %>% 
-  ggplot(aes(seed, exp_wins)) + 
-  geom_point(alpha = 0.8, size = 3) +
-  labs(y = "tournament wins (mean)")
-```
-
-Let's visualize all the tournament results, not just the averages.
-
-```{r fig.width=7, fig.height=5}
-tournament %>%
-  ggplot(aes(seed, tourney_w)) +
-  geom_bin2d(binwidth = c(1, 1), alpha = 0.8) +
-  scale_fill_gradient(low = "gray85", high = "midnightblue") +
-  labs(fill = "number of\nteams", y = "tournament wins")
-```
-
-We have a lot of options to deal with data like this (curvy, integers, all greater than zero) but one straightforward option are [splines](https://www.tmwr.org/recipes.html#spline-functions). Splines aren't perfect for this because they aren't constrained to stay greater than zero or to always decrease, but they work pretty well and can be used in lots of situations. We have to choose the **degrees of freedom** for the splines.
-
-```{r animation.hook="gifski", fig.width=7, fig.height=5}
-library(splines)
-
-plot_smoother <- function(deg_free) {
-  p <- ggplot(tournament, aes(seed, tourney_w)) + 
-    geom_bin2d(binwidth = c(1, 1), alpha = 0.8) +
-    scale_fill_gradient(low = "gray85", high = "midnightblue") +
-    geom_smooth(
-      method = lm, se = FALSE, color = "black",
-      formula = y ~ ns(x, df = deg_free)
-    ) +
-    labs(fill = "number of\nteams", y = "tournament wins",
-         title = paste(deg_free, "spline terms"))
-  
-  print(p)
-}
-
-walk(c(2, 4, 6, 8, 10, 15), plot_smoother)
-```
