@@ -23,10 +23,11 @@ projects: []
 
 
 
+[Adam Scott] (https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.
 
-Lately I've been publishing [screencasts](https://juliasilge.com/category/tidymodels/) demonstrating how to use the [tidymodels](https://www.tidymodels.org/) framework, from starting out with first modeling steps to tuning more complex models. Today's screencast walks through how to tune and choose hyperparameters using this week's [`#TidyTuesday` dataset](https://github.com/rfordatascience/tidytuesday) on NCAA women's basketball tournaments. ⛳
+First, let's enjoy Adam Scott's Masters victory in 2013! ⛳
 
-`{{% youtube "krw7OkUCk84" %}}`{=html}
+`{{% youtube "08HvndZs09I" %}}`{=html}
 
 </br>
 
