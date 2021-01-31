@@ -60,8 +60,8 @@ get_all_data <- function(stat, year = 2018){
 ```{r photo, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("as_masters.jpg")
 ```
-*Photo by Harry How/Getty Images*  
-  
+
+*Photo by Harry How/Getty Images*
 
 ## Explore the data
 
@@ -70,6 +70,7 @@ Throughout this post we use data available on the [PGA tour website](https://www
 ### How does Adam Scott rank compared to peers?
 
 Here are the 10 players who the most on the PGA tour since 2000:
+
 ```{r, echo = FALSE}
 #Get Top 10 Finishes and Wins `top_10` `wins`
 top10_list <- lapply(2000:2021, get_all_data, stat="138")
@@ -82,6 +83,7 @@ top10_all$top_10[is.na(top10_all$top_10)] <- 0
 top10 <- top10_all %>% group_by(player_name) %>% summarise(wins=sum(wins),top_10 = sum(top_10)) %>% arrange(-wins) %>% head(10)
 top10
 ```
+
 Adam is 6th on the list with 14 wins (9th in terms of top 10s). Let's look at how it translates in terms of scoring average:
 
 ```{r, echo=FALSE}
@@ -94,10 +96,9 @@ score_avg <- score_avg_all %>% mutate(score_average=score_average * rounds) %>% 
 score_avg
 ```
 
-Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers. 
+Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers.
 
-A better way to compare is to use the **strokes gained metric**. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event.
-Looking at players with at least 200 rounds measured, Adam Scott ranks 17th in strokes gained total.
+A better way to compare is to use the strokes gained metrics. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event. Looking at players with at least 200 rounds measured, Adam Scott ranks 17th in strokes gained total.
 
 ```{r, echo=FALSE}
 sg_list <- lapply(2004:2021, get_all_data, stat="02675")
@@ -107,6 +108,46 @@ strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME
 sg_avg <- strokes_gained_all %>% mutate(sg_total=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_total=sum(sg_total)/sum(measured_rounds))  %>% arrange(-sg_total) %>% filter(measured_rounds>=200) %>% head(17)
 sg_avg
 ```
+
 This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
 
-## In which part of the game does Adam Scott performs best?
+### In which part of the game does Adam Scott performs best?
+
+The strokes gained total metric can be broken down into 4 categories: off-the-tee, approach-to-green, around-the-green and putting. The total strokes gained is the sum of the strokes gained for each category. The first two categories relate to the long game, the last two to the short game.
+
+```{r, echo = FALSE}
+# off the tee
+sg_list <- lapply(2004:2021, get_all_data, stat="02567")
+sg_indx <- lengths(sg_list)
+strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_tee <- strokes_gained_all %>% mutate(sg_tee=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_tee=sum(sg_tee)/sum(measured_rounds))  %>% arrange(-sg_tee)
+
+# approach
+sg_list <- lapply(2004:2021, get_all_data, stat="02568")
+sg_indx <- lengths(sg_list)
+strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_approach <- strokes_gained_all %>% mutate(sg_approach=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_approach=sum(sg_approach)/sum(measured_rounds))  %>% arrange(-sg_approach)
+
+# around the green
+sg_list <- lapply(2004:2021, get_all_data, stat="02569")
+sg_indx <- lengths(sg_list)
+strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_around <- strokes_gained_all %>% mutate(sg_around = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_around=sum(sg_around)/sum(measured_rounds))  %>% arrange(-sg_around)
+
+# putting
+sg_list <- lapply(2004:2021, get_all_data, stat="02564")
+sg_indx <- lengths(sg_list)
+strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_putt <- strokes_gained_all %>% mutate(sg_putt = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_putt=sum(sg_putt)/sum(measured_rounds))  %>% arrange(-sg_putt)
+
+sg <- sg_tee %>% left_join(sg_approach,by = "player_name") %>% left_join(sg_around,by = "player_name") %>% left_join(sg_putt,by = "player_name") %>% mutate(sg_long = sg_tee + sg_approach, sg_short = sg_around + sg_putt, sg_total = sg_short + sg_long, is_AS = ifelse(player_name=="Adam Scott",1,0)) %>% arrange(-sg_total) %>% filter(measured_rounds.x>=200) %>% left_join(top10,by="player_name")
+
+ggplot(sg, aes(x=sg_long, y=sg_short,label=player_name)) +
+  geom_point() + 
+  geom_label(data=sg %>% filter(sg_total>=1.1 & player_name!="Paul Casey"), aes(fill=factor(is_AS)),check_overlap=T,nudge_x = 0.05, nudge_y = 0.05) +
+  xlim(-1,2) + ylim(-1,1) + theme_bw()
+```
