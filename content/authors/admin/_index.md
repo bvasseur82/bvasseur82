@@ -14,27 +14,20 @@ education:
 email: ""
 highlight_name: true
 interests:
-- Sports in general (football, US sports, golf,...)
-- Sport analytics
+- Sports analytics
 - Financial markets
 - Statistics, data processing and visualisation
+- Sports in general (football, US sports, golf,...)
 organizations:
 - name: ""
   url: ""
-role: Professor of Artificial Intelligence
+role: ""
 social:
 - icon: envelope
   icon_pack: fas
   link: /#contact
 - display:
     header: true
-  #icon: twitter
-  #icon_pack: fab
-  #label: Follow me on Twitter
-  #link: https://twitter.com/GeorgeCushen
-  #icon: graduation-cap
-  #icon_pack: fas
-  #link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
   link: https://github.com/bvasseur82
@@ -45,8 +38,12 @@ superuser: true
 title: Benoit Vasseur
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+I am currently a credit analyst at Scope Ratings in Frankfurt (Germany) and my role is to provide accurate, robust and unbiased opinions on the credit quality of various debt issuers. I specialise in structured finance and have expert knowledge on securitisation, structured products and derivatives, used as financing or investment tools.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+Prior to joining Scope Ratings, I have worked ca. 11 years at J.P. Morgan in London in a structuring and marketing role focused on large institutional and corporate clients. This position has been a fantastic opportunity to get exposure to various fields of the financial markets and learn from very knowledgeable colleagues from all backgrounds. My main achievements were to create long-lasting relationships of trust and confidence with clients and colleagues. It helped me broaden my skill sets and not only rely on technical or theoretical knowledge.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
+I believe education and open-mindedness are key elements to a successful career. Throughout the years I have always tried to explore new areas and learn from my colleagues. Currently, I am developing my programming and data science knowledge using R and Python.
+
+Outside work, I enjoy spending time with my family and try to follow sports (especially football, US sports and golf). I like to watch the competition and to read about the advanced metrics and technology that help us better understand the different games. I also play golf in my free time. It is a fantastic mental and technical challenge and it tests your will not to give up.
+
+Views and opinions expressed here are my own.
