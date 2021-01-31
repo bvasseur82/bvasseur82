@@ -1,6 +1,5 @@
 ---
-bio: My research interests include distributed robotics, mobile computing and programmable
-  matter.
+bio: I am passionate about the worlds of financial markets and professional sports. Both can be summarised in numbers and explained with analytical methods, but no one can truly predict them. Trying to understand and rationalise what creates financial over vs. underperformance, victory vs. defeat is what drives me.
 education:
   courses:
   - course: PhD in Artificial Intelligence
@@ -13,14 +12,15 @@ education:
     institution: Massachusetts Institute of Technology
     year: 2008
 email: ""
-highlight_name: false
+highlight_name: true
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Sports in general (football, US sports, golf,...)
+- Sport analytics
+- Financial markets
+- Statistics, data processing and visualisation
 organizations:
-- name: Stanford University
-  url: https://www.stanford.edu/
+- name: ""
+  url: ""
 role: Professor of Artificial Intelligence
 social:
 - icon: envelope
@@ -28,21 +28,21 @@ social:
   link: /#contact
 - display:
     header: true
-  icon: twitter
-  icon_pack: fab
-  label: Follow me on Twitter
-  link: https://twitter.com/GeorgeCushen
-- icon: graduation-cap
-  icon_pack: fas
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  #icon: twitter
+  #icon_pack: fab
+  #label: Follow me on Twitter
+  #link: https://twitter.com/GeorgeCushen
+  #icon: graduation-cap
+  #icon_pack: fas
+  #link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/bvasseur82
 - icon: linkedin
   icon_pack: fab
-  link: https://www.linkedin.com/
+  link: https://www.linkedin.com/in/benoit-vasseur/
 superuser: true
-title: Nelson Bighetti
+title: Benoit Vasseur
 ---
 
 Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.

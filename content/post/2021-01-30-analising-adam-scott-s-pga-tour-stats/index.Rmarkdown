@@ -82,7 +82,7 @@ top10_all$top_10[is.na(top10_all$top_10)] <- 0
 top10 <- top10_all %>% group_by(player_name) %>% summarise(wins=sum(wins),top_10 = sum(top_10)) %>% arrange(-wins) %>% head(10)
 top10
 ```
-Adam is 6th on the list with 14 wins. Let's look at how it translates in terms of scoring average:
+Adam is 6th on the list with 14 wins (9th in terms of top 10s). Let's look at how it translates in terms of scoring average:
 
 ```{r, echo=FALSE}
 sa_list <- lapply(2000:2021, get_all_data, stat="120")
@@ -96,4 +96,17 @@ score_avg
 
 Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers. 
 
-A better way to compare is to use the strokes gained metric.
+A better way to compare is to use the **strokes gained metric**. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event.
+Looking at players with at least 200 rounds measured, Adam Scott ranks 17th in strokes gained total.
+
+```{r, echo=FALSE}
+sg_list <- lapply(2004:2021, get_all_data, stat="02675")
+sg_indx <- lengths(sg_list)
+strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_avg <- strokes_gained_all %>% mutate(sg_total=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_total=sum(sg_total)/sum(measured_rounds))  %>% arrange(-sg_total) %>% filter(measured_rounds>=200) %>% head(17)
+sg_avg
+```
+This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
+
+## In which part of the game does Adam Scott performs best?

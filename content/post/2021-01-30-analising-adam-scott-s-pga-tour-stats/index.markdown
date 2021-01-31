@@ -52,7 +52,7 @@ Here are the 10 players who the most on the PGA tour since 2000:
 ##  9 Bubba Watson      12     70
 ## 10 Ernie Els         12     91
 ```
-Adam is 6th on the list with 14 wins. Let's look at how it translates in terms of scoring average:
+Adam is 6th on the list with 14 wins (9th in terms of top 10s). Let's look at how it translates in terms of scoring average:
 
 
 ```
@@ -79,4 +79,32 @@ Adam is 6th on the list with 14 wins. Let's look at how it translates in terms o
 
 Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers. 
 
-A better way to compare is to use the strokes gained metric.
+A better way to compare is to use the **strokes gained metric**. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event.
+Looking at players with at least 200 rounds measured, Adam Scott ranks 17th in strokes gained total.
+
+
+```
+## # A tibble: 17 x 3
+##    player_name       measured_rounds sg_total
+##    <chr>                       <int>    <dbl>
+##  1 Tiger Woods                   393     2.43
+##  2 Rory McIlroy                  424     1.60
+##  3 Jon Rahm                      243     1.54
+##  4 Patrick Cantlay               237     1.45
+##  5 Justin Thomas                 434     1.34
+##  6 Jim Furyk                     958     1.30
+##  7 Hideki Matsuyama              468     1.24
+##  8 Dustin Johnson                760     1.24
+##  9 Jordan Spieth                 531     1.18
+## 10 Steve Stricker                611     1.16
+## 11 Henrik Stenson                299     1.14
+## 12 Bryson DeChambeau             291     1.14
+## 13 Xander Schauffele             276     1.13
+## 14 Sergio Garcia                 717     1.12
+## 15 Justin Rose                   915     1.11
+## 16 Luke Donald                   667     1.11
+## 17 Adam Scott                    792     1.11
+```
+This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
+
+## In which part of the game does Adam Scott performs best?
