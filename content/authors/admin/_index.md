@@ -2,15 +2,15 @@
 bio: I am passionate about the worlds of financial markets and professional sports. Both can be summarised in numbers and explained with analytical methods, but no one can truly predict them. Trying to understand and rationalise what creates financial over vs. underperformance, victory vs. defeat is what drives me.
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: MSc degree in general engineering with a major in applied Mathematics
+    institution: Ecole Centrale Paris
+    year: 2006
+  - course: MSc degree in Mathematics applied to Finance and Economics
+    institution: Université Paris Dauphine
+    year: 2006
+  - course: Executive Master of Business Administration
+    institution: Frankfurt School of Finance & Management
+    year: 2019
 email: ""
 highlight_name: true
 interests:
@@ -25,7 +25,7 @@ role: ""
 social:
 - icon: envelope
   icon_pack: fas
-  link: /#contact
+  link: /contact
 - display:
     header: true
 - icon: github
