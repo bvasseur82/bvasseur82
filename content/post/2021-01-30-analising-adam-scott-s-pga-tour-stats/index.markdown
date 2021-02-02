@@ -113,4 +113,6 @@ This is in line with the ranking in scoring average and trails the ranking in wi
 
 The strokes gained total metric can be broken down into 4 categories: off-the-tee, approach-to-green, around-the-green and putting. The total strokes gained is the sum of the strokes gained for each category. The first two categories relate to the long game, the last two to the short game.
 
+The plot below shows how some of the best players perform in the long and short game: players on the right hand side have an above average long game; players on the top have an above average short game (and there is Tiger Woods!).
+
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="2400" />

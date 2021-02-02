@@ -53,6 +53,16 @@ get_all_data <- function(stat, year = 2018){
   stat_data[3] <- year
   return(stat_data)
 }
+
+my_theme <- function() {
+  ggplot2::theme(panel.background = ggplot2::element_blank(),
+                 panel.grid.major.x = ggplot2::element_blank(),
+                 panel.grid.major.y = element_line(colour = "grey"),
+                 legend.position = "top",
+                 legend.title = ggplot2::element_blank()
+                 )
+  
+}
 ```
 
 [Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.`r emo::ji("golf")`
@@ -115,6 +125,8 @@ This is in line with the ranking in scoring average and trails the ranking in wi
 
 The strokes gained total metric can be broken down into 4 categories: off-the-tee, approach-to-green, around-the-green and putting. The total strokes gained is the sum of the strokes gained for each category. The first two categories relate to the long game, the last two to the short game.
 
+The plot below shows how some of the best players perform in the long and short game: players on the right hand side have an above average long game; players on the top have an above average short game (and there is Tiger Woods!).
+
 ```{r, echo = FALSE}
 # off the tee
 sg_list <- lapply(2004:2021, get_all_data, stat="02567")
@@ -148,6 +160,6 @@ sg <- sg_tee %>% left_join(sg_approach,by = "player_name") %>% left_join(sg_arou
 
 ggplot(sg, aes(x=sg_long, y=sg_short,label=player_name)) +
   geom_point() + 
-  geom_label(data=sg %>% filter(sg_total>=1.1 & player_name!="Paul Casey"), aes(fill=factor(is_AS)),check_overlap=T,nudge_x = 0.05, nudge_y = 0.05) +
-  xlim(-1,2) + ylim(-1,1) + theme_bw()
+  geom_label(data=sg %>% filter(sg_total>=1.1 & player_name!="Paul Casey"), aes(fill=factor(is_AS)), nudge_x = 0.05, nudge_y = 0.05) +
+  xlim(-1,2) + ylim(-1,1) + my_theme() + scale_fill_manual(values = c("white","#669999")) + theme(legend.position = "none")
 ```
