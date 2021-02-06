@@ -116,3 +116,23 @@ The strokes gained total metric can be broken down into 4 categories: off-the-te
 The plot below shows how some of the best players perform in the long and short game: players on the right hand side have an above average long game; players on the top have an above average short game (and there is Tiger Woods!).
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="2400" />
+Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green
+
+
+```
+## # A tibble: 362 x 2
+##    player_name      sg_long
+##    <chr>              <dbl>
+##  1 Tiger Woods         1.63
+##  2 Rory McIlroy        1.46
+##  3 Jon Rahm            1.16
+##  4 Dustin Johnson      1.16
+##  5 Hideki Matsuyama    1.14
+##  6 Kenny Perry         1.13
+##  7 Adam Scott          1.12
+##  8 Henrik Stenson      1.08
+##  9 Corey Conners       1.08
+## 10 Joe Durant          1.07
+## # … with 352 more rows
+```
+

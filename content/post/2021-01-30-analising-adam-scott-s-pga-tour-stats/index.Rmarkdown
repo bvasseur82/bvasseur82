@@ -163,3 +163,15 @@ ggplot(sg, aes(x=sg_long, y=sg_short,label=player_name)) +
   geom_label(data=sg %>% filter(sg_total>=1.1 & player_name!="Paul Casey"), aes(fill=factor(is_AS)), nudge_x = 0.05, nudge_y = 0.05) +
   xlim(-1,2) + ylim(-1,1) + my_theme() + scale_fill_manual(values = c("white","#669999")) + theme(legend.position = "none")
 ```
+Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green
+
+```{r, echo=FALSE}
+sg %>% select(player_name,sg_long,sg_tee,sg_approach) %>% arrange(-sg_long)
+```
+Out of the 360 players with more than 200 rounds measured, Adam is 7th in strokes gained approach-to-green, 18th in strokes gained off-the-tee and in total 7th in strokes gained in the long game.
+
+We can look at the same for the short game:
+```{r, echo=FALSE}
+sg %>% select(player_name,sg_short,sg_around,sg_putt) %>% arrange(-sg_short)
+```
+Luke Donald is leading this category with Tiger Woods 5th. Adam Scott 

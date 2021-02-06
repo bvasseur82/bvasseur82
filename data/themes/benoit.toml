@@ -2,7 +2,7 @@
 name = "benoit"
 
 # Is theme light or dark?
-light = true
+light = false
 
 # Primary
 primary = "#8486B2"
@@ -14,6 +14,6 @@ menu_text_active = "#8486B2"
 menu_title = "#333"
 
 # Backgrounds
-background = "#ffffff"
-home_section_odd = "#ffffff"
-home_section_even = "#ffffff"
+background = "#ffccff"
+home_section_odd = "#ffccff"
+home_section_even = "#ffccff"
