@@ -7165,7 +7165,7 @@ body {
   font-size: 1rem;
   line-height: inherit;
   color: inherit;
-  background-color: #ffffff;
+  background-color: #eddbf4;
   padding-top: 0;
   counter-reset: captions;
   overflow-x: hidden;
@@ -7987,7 +7987,7 @@ a.summary-link {
  *  Modals.
  **************************************************/
 .modal-content {
-  background: #ffffff; }
+  background: #eddbf4; }
 
 .dark .modal-content {
   background: #23252f; }
@@ -8013,13 +8013,13 @@ a.summary-link {
  *  Navigation bar
  **************************************************/
 .dropdown-menu {
-  background-color: #ffffff !important;
+  background-color: #eddbf4 !important;
   color: #333 !important;
   z-index: 1032; }
 
 .navbar {
   height: 70px;
-  background: #ffffff;
+  background: #eddbf4;
   box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
   font-size: 12.32px;
   position: fixed;
@@ -8146,7 +8146,7 @@ a.summary-link {
     left: 0;
     top: 50px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #eddbf4;
     text-align: center !important; }
   .dark .navbar-collapse {
     background-color: #282a36; }
@@ -8176,7 +8176,7 @@ ul.nav-icons li.nav-item a.nav-link {
   color: white !important; }
 
 .dropdown-item {
-  background-color: #ffffff !important;
+  background-color: #eddbf4 !important;
   color: #333 !important; }
 
 .dark .dropdown-item {
@@ -8611,7 +8611,7 @@ html[dir='rtl'] body {
 .search-modal {
   transform: scale(0);
   -webkit-transform: scale(0);
-  background-color: #ffffff;
+  background-color: #eddbf4;
   bottom: 0;
   left: 0;
   right: 0;
@@ -8637,7 +8637,7 @@ html[dir='rtl'] body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  background-color: #eddbf4;
   padding-top: 2rem;
   padding-bottom: 1rem; }
   @media (max-width: 991.98px) {
@@ -8775,7 +8775,7 @@ html[dir='rtl'] body {
  *  Page Builder: sections and widgets
  **************************************************/
 .home-section {
-  background: #ffffff;
+  background: #eddbf4;
   position: relative;
   padding: 110px 0 110px 0;
   z-index: 0; }
@@ -8859,7 +8859,7 @@ html[dir='rtl'] body {
   padding-top: 50px; }
 
 .home-section:nth-of-type(even) {
-  background: #ffffff; }
+  background: #eddbf4; }
 
 .dark .home-section {
   background: #272935; }

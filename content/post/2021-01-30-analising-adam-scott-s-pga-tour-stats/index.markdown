@@ -1,7 +1,7 @@
 ---
 title: Analising Adam Scott's PGA Tour stats
 author: Benoit Vasseur
-date: '2021-01-30'
+date: '2021-07-02'
 slug: adam-scott-pga
 categories: 
   - rstats
@@ -54,7 +54,7 @@ Here are the 10 players who the most on the PGA tour since 2000:
 ## 10 Ernie Els         12     91
 ```
 
-Adam is 6th on the list with 14 wins (9th in terms of top 10s). Let's look at how it translates in terms of scoring average:
+Adam is 6th on the list with 14 wins (8th in terms of top 10s). Let's look at how it translates in terms of scoring average:
 
 
 ```
@@ -79,9 +79,9 @@ Adam is 6th on the list with 14 wins (9th in terms of top 10s). Let's look at ho
 ## 16 Adam Scott         1127          70.0
 ```
 
-Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 16th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers.
+Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 15th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers.
 
-A better way to compare is to use the strokes gained metrics. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event. Looking at players with at least 200 rounds measured, Adam Scott ranks 17th in strokes gained total.
+A better way to compare is to use the strokes gained metrics. The PGA website has this statistic recorded since 2004. Strokes gained (total) is the per round average of the number of strokes a player was better or worse than the field average on the same course and event. Looking at players with at least 200 rounds measured, Adam Scott ranks 16th in strokes gained total.
 
 
 ```
@@ -135,7 +135,7 @@ Adam Scott over-performs in the long game and under-performs in the short game. 
 ## 10 Joe Durant          1.07  0.607       0.464
 ## # … with 352 more rows
 ```
-Out of the 360 players with more than 200 rounds measured, Adam is 7th in strokes gained approach-to-green, 18th in strokes gained off-the-tee and in total 7th in strokes gained in the long game.
+Out of the 360 players with more than 200 rounds measured, Adam is 7th in strokes gained approach-to-green, 19th in strokes gained off-the-tee and in total 7th in strokes gained in the long game.
 
 We can look at the same for the short game:
 
@@ -155,4 +155,15 @@ We can look at the same for the short game:
 ## 10 Greg Chalmers      0.731    0.0958   0.635
 ## # … with 352 more rows
 ```
-Luke Donald is leading this category with Tiger Woods 5th. Adam Scott 
+Luke Donald is leading this category with Tiger Woods 5th. Adam Scott is only 207th out of the 360 players selected. The below shows that Adam Scott relatively struggles with putting.
+
+
+```
+## # A tibble: 1 x 4
+##   player_name sg_short sg_around sg_putt
+##   <chr>          <dbl>     <dbl>   <dbl>
+## 1 Adam Scott  -0.00473    0.0929 -0.0976
+```
+### How Adam Scott's strokes gained values have evolved throughout the years?
+
+So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game.
