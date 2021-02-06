@@ -116,23 +116,43 @@ The strokes gained total metric can be broken down into 4 categories: off-the-te
 The plot below shows how some of the best players perform in the long and short game: players on the right hand side have an above average long game; players on the top have an above average short game (and there is Tiger Woods!).
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="2400" />
-Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green
+Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green:
 
 
 ```
-## # A tibble: 362 x 2
-##    player_name      sg_long
-##    <chr>              <dbl>
-##  1 Tiger Woods         1.63
-##  2 Rory McIlroy        1.46
-##  3 Jon Rahm            1.16
-##  4 Dustin Johnson      1.16
-##  5 Hideki Matsuyama    1.14
-##  6 Kenny Perry         1.13
-##  7 Adam Scott          1.12
-##  8 Henrik Stenson      1.08
-##  9 Corey Conners       1.08
-## 10 Joe Durant          1.07
+## # A tibble: 362 x 4
+##    player_name      sg_long sg_tee sg_approach
+##    <chr>              <dbl>  <dbl>       <dbl>
+##  1 Tiger Woods         1.63  0.402       1.23 
+##  2 Rory McIlroy        1.46  0.978       0.480
+##  3 Jon Rahm            1.16  0.816       0.342
+##  4 Dustin Johnson      1.16  0.745       0.412
+##  5 Hideki Matsuyama    1.14  0.386       0.751
+##  6 Kenny Perry         1.13  0.639       0.496
+##  7 Adam Scott          1.12  0.485       0.634
+##  8 Henrik Stenson      1.08  0.335       0.744
+##  9 Corey Conners       1.08  0.581       0.496
+## 10 Joe Durant          1.07  0.607       0.464
 ## # … with 352 more rows
 ```
+Out of the 360 players with more than 200 rounds measured, Adam is 7th in strokes gained approach-to-green, 18th in strokes gained off-the-tee and in total 7th in strokes gained in the long game.
 
+We can look at the same for the short game:
+
+```
+## # A tibble: 362 x 4
+##    player_name     sg_short sg_around sg_putt
+##    <chr>              <dbl>     <dbl>   <dbl>
+##  1 Luke Donald        0.919    0.391    0.528
+##  2 Steve Stricker     0.865    0.394    0.470
+##  3 Aaron Baddeley     0.846    0.319    0.527
+##  4 Corey Pavin        0.813    0.385    0.427
+##  5 Tiger Woods        0.804    0.242    0.562
+##  6 Brandt Snedeker    0.793    0.273    0.520
+##  7 Bryce Molder       0.789    0.268    0.522
+##  8 Denny McCarthy     0.769    0.0185   0.751
+##  9 Jesper Parnevik    0.754    0.120    0.634
+## 10 Greg Chalmers      0.731    0.0958   0.635
+## # … with 352 more rows
+```
+Luke Donald is leading this category with Tiger Woods 5th. Adam Scott 
