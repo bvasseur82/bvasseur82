@@ -1,7 +1,7 @@
 ---
 title: Analising Adam Scott's PGA Tour stats
 author: Benoit Vasseur
-date: '2021-07-02'
+date: '2021-02-06'
 slug: adam-scott-pga
 categories: 
   - rstats
@@ -90,8 +90,8 @@ top10_all <- subset(top10_all, select = c("Year", "PLAYER.NAME", "TOP.10", "X1ST
 names(top10_all)[names(top10_all)=="x1st"] <- "wins"
 top10_all$wins[is.na(top10_all$wins)] <- 0
 top10_all$top_10[is.na(top10_all$top_10)] <- 0
-top10 <- top10_all %>% group_by(player_name) %>% summarise(wins=sum(wins),top_10 = sum(top_10)) %>% arrange(-wins) %>% head(10)
-top10
+top10 <- top10_all %>% group_by(player_name) %>% summarise(wins=sum(wins),top_10 = sum(top_10)) %>% arrange(-wins) 
+top10[1:10,]
 ```
 
 Adam is 6th on the list with 14 wins (8th in terms of top 10s). Let's look at how it translates in terms of scoring average:
@@ -102,8 +102,8 @@ sa_indx <- lengths(sa_list)
 score_avg_all <- as.data.frame(do.call(rbind,lapply(sa_list, `length<-`, max(sa_indx))))
 score_avg_all <- subset(score_avg_all, select = c("Year", "PLAYER.NAME", "AVG", "ROUNDS")) %>% clean_names() 
 names(score_avg_all)[names(score_avg_all)=="avg"] <- "score_average"
-score_avg <- score_avg_all %>% mutate(score_average=score_average * rounds) %>% group_by(player_name) %>% summarise(rounds=sum(rounds),score_average=sum(score_average)/sum(rounds))  %>% arrange(score_average) %>% filter(rounds>=500) %>% head(16)
-score_avg
+score_avg <- score_avg_all %>% mutate(score_average=score_average * rounds) %>% group_by(player_name) %>% summarise(rounds=sum(rounds),score_average=sum(score_average)/sum(rounds))  %>% arrange(score_average) %>% filter(rounds>=500)
+score_avg[1:20,]
 ```
 
 Out of the players with more than 500 rounds since 2000 on the PGA tour, Adam Scott is 15th in scoring average with an average score just below 70. However, scoring average could be slightly biased (well, Tiger is leading it by some margin!), as it is a measure relative to the courses, not your peers.
@@ -115,8 +115,8 @@ sg_list <- lapply(2004:2021, get_all_data, stat="02675")
 sg_indx <- lengths(sg_list)
 strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
 strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
-sg_avg <- strokes_gained_all %>% mutate(sg_total=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_total=sum(sg_total)/sum(measured_rounds))  %>% arrange(-sg_total) %>% filter(measured_rounds>=200) %>% head(17)
-sg_avg
+sg_avg <- strokes_gained_all %>% mutate(sg_total=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_total=sum(sg_total)/sum(measured_rounds))  %>% arrange(-sg_total) %>% filter(measured_rounds>=200)
+sg_avg[1:20,]
 ```
 
 This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
@@ -166,7 +166,8 @@ ggplot(sg, aes(x=sg_long, y=sg_short,label=player_name)) +
 Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green:
 
 ```{r, echo=FALSE}
-sg %>% select(player_name,sg_long,sg_tee,sg_approach) %>% arrange(-sg_long)
+sg_long <- sg %>% select(player_name,sg_long,sg_tee,sg_approach) %>% arrange(-sg_long)
+sg_long
 ```
 Out of the 360 players with more than 200 rounds measured, Adam is 7th in strokes gained approach-to-green, 19th in strokes gained off-the-tee and in total 7th in strokes gained in the long game.
 
@@ -178,7 +179,8 @@ sg_short
 Luke Donald is leading this category with Tiger Woods 5th. Adam Scott is only 207th out of the 360 players selected. The below shows that Adam Scott relatively struggles with putting.
 
 ```{r, echo=FALSE}
-sg_short %>% filter(player_name=="Adam Scott")
+as_short <- sg_short %>% filter(player_name=="Adam Scott")
+as_short
 ```
 ### How Adam Scott's strokes gained values have evolved throughout the years?
 
