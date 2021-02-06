@@ -2,7 +2,7 @@
 name = "benoit"
 
 # Is theme light or dark?
-light = false
+light = true
 
 # Primary
 primary = "#8486B2"
