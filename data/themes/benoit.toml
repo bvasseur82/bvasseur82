@@ -8,12 +8,12 @@ light = true
 primary = "#8486B2"
 
 # Menu
-menu_primary = "#f1f8e9"
+menu_primary = "#dcedc8" #"#f1f8e9"
 menu_text = "#333"
 menu_text_active = "#8486B2"
 menu_title = "#333"
 
 # Backgrounds
-background = "#f1f8e9"
-home_section_odd = "#f1f8e9"
-home_section_even = "#f1f8e9"
+background = "#dcedc8" #"#f1f8e9"
+home_section_odd = "#dcedc8" #"#f1f8e9"
+home_section_even = "#dcedc8" #"#f1f8e9"
