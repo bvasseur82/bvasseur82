@@ -28,6 +28,7 @@ knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE,
                       tidy = "styler", fig.width = 8, fig.height = 5)
 library(scales)
 library(tidyverse)
+library(tidyr)
 library(RCurl)
 library(readxl)
 library(dplyr)
@@ -38,6 +39,9 @@ library(rvest)
 library(janitor)
 library(purrr)
 library(stargazer)
+library(gt)
+library(stringr)
+library(data.table)
 
 ## Create function to retrieve statistics from PGA website
 get_all_data <- function(stat, year = 2018){
@@ -131,30 +135,30 @@ The plot below shows how some of the best players perform in the long and short 
 # off the tee
 sg_list <- lapply(2004:2021, get_all_data, stat="02567")
 sg_indx <- lengths(sg_list)
-strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
-strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
-sg_tee <- strokes_gained_all %>% mutate(sg_tee=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_tee=sum(sg_tee)/sum(measured_rounds))  %>% arrange(-sg_tee)
+strokes_gained_all_tee <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all_tee <- subset(strokes_gained_all_tee, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_tee <- strokes_gained_all_tee %>% mutate(sg_tee=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_tee=sum(sg_tee)/sum(measured_rounds))  %>% arrange(-sg_tee)
 
 # approach
 sg_list <- lapply(2004:2021, get_all_data, stat="02568")
 sg_indx <- lengths(sg_list)
-strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
-strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
-sg_approach <- strokes_gained_all %>% mutate(sg_approach=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_approach=sum(sg_approach)/sum(measured_rounds))  %>% arrange(-sg_approach)
+strokes_gained_all_app <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all_app <- subset(strokes_gained_all_app, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_approach <- strokes_gained_all_app %>% mutate(sg_approach=average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_approach=sum(sg_approach)/sum(measured_rounds))  %>% arrange(-sg_approach)
 
 # around the green
 sg_list <- lapply(2004:2021, get_all_data, stat="02569")
 sg_indx <- lengths(sg_list)
-strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
-strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
-sg_around <- strokes_gained_all %>% mutate(sg_around = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_around=sum(sg_around)/sum(measured_rounds))  %>% arrange(-sg_around)
+strokes_gained_all_green <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all_green <- subset(strokes_gained_all_green, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_around <- strokes_gained_all_green %>% mutate(sg_around = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_around=sum(sg_around)/sum(measured_rounds))  %>% arrange(-sg_around)
 
 # putting
 sg_list <- lapply(2004:2021, get_all_data, stat="02564")
 sg_indx <- lengths(sg_list)
-strokes_gained_all <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
-strokes_gained_all <- subset(strokes_gained_all, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
-sg_putt <- strokes_gained_all %>% mutate(sg_putt = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_putt=sum(sg_putt)/sum(measured_rounds))  %>% arrange(-sg_putt)
+strokes_gained_all_putt <- as.data.frame(do.call(rbind,lapply(sg_list, `length<-`, max(sg_indx))))
+strokes_gained_all_putt <- subset(strokes_gained_all_putt, select = c("Year", "PLAYER.NAME", "AVERAGE","MEASURED.ROUNDS")) %>% clean_names() 
+sg_putt <- strokes_gained_all_putt %>% mutate(sg_putt = average * measured_rounds) %>% group_by(player_name) %>% summarise(measured_rounds=sum(measured_rounds),sg_putt=sum(sg_putt)/sum(measured_rounds))  %>% arrange(-sg_putt)
 
 sg <- sg_tee %>% left_join(sg_approach,by = "player_name") %>% left_join(sg_around,by = "player_name") %>% left_join(sg_putt,by = "player_name") %>% mutate(sg_long = sg_tee + sg_approach, sg_short = sg_around + sg_putt, sg_total = sg_short + sg_long, is_AS = ifelse(player_name=="Adam Scott",1,0)) %>% arrange(-sg_total) %>% filter(measured_rounds.x>=200) %>% left_join(top10,by="player_name")
 
@@ -184,4 +188,25 @@ as_short
 ```
 ### How Adam Scott's strokes gained values have evolved throughout the years?
 
-So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game.
+So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of each strokes gained category over the years:
+
+```{r, echo=FALSE}
+as_tee <-strokes_gained_all_tee %>% filter(player_name=="Adam Scott")
+as_app <-strokes_gained_all_app %>% filter(player_name=="Adam Scott")
+as_green <-strokes_gained_all_green %>% filter(player_name=="Adam Scott")
+as_putt <-strokes_gained_all_putt %>% filter(player_name=="Adam Scott")
+as_sg_hist <- tibble(year=as_tee$year,tee=as_tee$average,approach=as_app$average,around_green=as_green$average,putt=as_putt$average) %>% setDT()
+data <- melt(as_sg_hist, id.vars = "year")
+
+ggplot(data, aes(fill=variable, y=value, x=year)) +
+    geom_bar(position="dodge", stat="identity") + my_theme() 
+```
+
+Adam seemed to have struggled a lot with putting around 2010. Noticeably in the recent years, his game has been more constantly above average in all aspects. His strong suits have become less dominant (long game) but putting is not hurting him as much. 2021 weakness around the green is likely due to small samples.
+
+If Adam manages to keep up the positive trend in putting and maintain strengths in other areas, more wins and top 10s should come his way!! 
+
+```{r, echo=FALSE}
+ggplot(data[year>=2016], aes(fill=variable, y=value, x=year)) +
+    geom_bar(position="dodge", stat="identity") + my_theme() +  scale_x_continuous(breaks = 2016:2021)
+```

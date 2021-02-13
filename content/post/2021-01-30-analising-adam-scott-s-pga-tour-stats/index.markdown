@@ -173,4 +173,12 @@ Luke Donald is leading this category with Tiger Woods 5th. Adam Scott is only 20
 ```
 ### How Adam Scott's strokes gained values have evolved throughout the years?
 
-So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game.
+So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of each strokes gained category over the years:
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="2400" />
+
+Adam seemed to have struggled a lot with putting around 2010. Noticeably in the recent years, his game has been more constantly above average in all aspects. His strong suits have become less dominant (long game) but putting is not hurting him as much. 2021 weakness around the green is likely due to small samples.
+
+If Adam manages to keep up the positive trend in putting and maintain strengths in other areas, more wins and top 10s should come his way!! 
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="2400" />
