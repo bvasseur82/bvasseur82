@@ -204,9 +204,9 @@ ggplot(data, aes(fill=variable, y=value, x=year)) +
 
 Adam seemed to have struggled a lot with putting around 2010. Noticeably in the recent years, his game has been more constantly above average in all aspects. His strong suits have become less dominant (long game) but putting is not hurting him as much. 2021 weakness around the green is likely due to small samples.
 
-If Adam manages to keep up the positive trend in putting and maintain strengths in other areas, more wins and top 10s should come his way!! 
-
 ```{r, echo=FALSE}
 ggplot(data[year>=2016], aes(fill=variable, y=value, x=year)) +
     geom_bar(position="dodge", stat="identity") + my_theme() +  scale_x_continuous(breaks = 2016:2021)
 ```
+
+If Adam manages to keep up the positive trend in putting and maintain strengths in other areas, more wins and top 10s should come his way!! 
