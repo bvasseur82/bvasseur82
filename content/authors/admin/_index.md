@@ -23,14 +23,14 @@ organizations:
   url: ""
 role: ""
 social:
-- icon: envelope
-  icon_pack: fas
-  link: /contact
-- display:
-    header: true
-- icon: github
-  icon_pack: fab
-  link: https://github.com/bvasseur82
+# - icon: envelope
+#   icon_pack: fas
+#   link: /contact
+# - display:
+#     header: true
+# - icon: github
+#   icon_pack: fab
+#   link: https://github.com/bvasseur82
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/benoit-vasseur/
