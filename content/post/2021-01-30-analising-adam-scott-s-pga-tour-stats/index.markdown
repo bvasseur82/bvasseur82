@@ -23,7 +23,7 @@ projects: []
 
 
 
-[Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.⛳
+[Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and being one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.⛳
 
 <img src="as_masters.jpg" width="100%" />
 
@@ -31,11 +31,11 @@ projects: []
 
 ## Explore the data
 
-Throughout this post we use data available on the [PGA tour website](https://www.pgatour.com/stats.html). When comparing to the field, we use data starting year 2000. We compile this data and process it using R. If you are curious of how data could be efficiently retrieved, please refer to the work done by [Jacob Dubbert](https://github.com/jdubbert/Scrape-golf-data-from-web).
+Throughout this post we use data available on the [PGA tour website](https://www.pgatour.com/stats.html). When comparing to the field, we use data starting year 2000. We compile this data and process it using R. If you are curious of how data could be efficiently retrieved, please refer to the nice work done by [Jacob Dubbert](https://github.com/jdubbert/Scrape-golf-data-from-web).
 
 ### How does Adam Scott rank compared to peers?
 
-Here are the 10 players who the most on the PGA tour since 2000:
+Here are the 10 players who won the most on the PGA tour since 2000:
 
 
 ```
@@ -114,7 +114,7 @@ A better way to compare is to use the strokes gained metrics. The PGA website ha
 ## 20 Phil Mickelson                949     1.07
 ```
 
-This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
+This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in strokes gained total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
 
 ### In which part of the game does Adam Scott performs best?
 
@@ -173,7 +173,7 @@ Luke Donald is leading this category with Tiger Woods 5th. Adam Scott is only 20
 ```
 ### How Adam Scott's strokes gained values have evolved throughout the years?
 
-So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of each strokes gained category over the years:
+So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of the yearly average of each strokes gained category:
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="2400" />
 

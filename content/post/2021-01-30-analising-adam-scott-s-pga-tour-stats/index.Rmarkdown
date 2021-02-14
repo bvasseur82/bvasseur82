@@ -70,7 +70,7 @@ my_theme <- function() {
 }
 ```
 
-[Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and is one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.`r emo::ji("golf")`
+[Adam Scott](https://www.pgatour.com/players/player.24502.adam-scott.html) is known for his great-looking golf swing and being one of the nicest guy on tour. Since the early 2000s Adam has had tremendous success across worldwide tours. This post will dig further into Adam's PGA tour stats and will try to explain the keys of his success.`r emo::ji("golf")`
 
 ```{r photo, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("as_masters.jpg")
@@ -80,11 +80,11 @@ knitr::include_graphics("as_masters.jpg")
 
 ## Explore the data
 
-Throughout this post we use data available on the [PGA tour website](https://www.pgatour.com/stats.html). When comparing to the field, we use data starting year 2000. We compile this data and process it using R. If you are curious of how data could be efficiently retrieved, please refer to the work done by [Jacob Dubbert](https://github.com/jdubbert/Scrape-golf-data-from-web).
+Throughout this post we use data available on the [PGA tour website](https://www.pgatour.com/stats.html). When comparing to the field, we use data starting year 2000. We compile this data and process it using R. If you are curious of how data could be efficiently retrieved, please refer to the nice work done by [Jacob Dubbert](https://github.com/jdubbert/Scrape-golf-data-from-web).
 
 ### How does Adam Scott rank compared to peers?
 
-Here are the 10 players who the most on the PGA tour since 2000:
+Here are the 10 players who won the most on the PGA tour since 2000:
 
 ```{r, echo = FALSE}
 #Get Top 10 Finishes and Wins `top_10` `wins`
@@ -124,7 +124,7 @@ sg_avg <- strokes_gained_all %>% mutate(sg_total=average * measured_rounds) %>% 
 sg_avg[1:20,]
 ```
 
-This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in sg_total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
+This is in line with the ranking in scoring average and trails the ranking in wins and top 10s. A few players above Adam in strokes gained total are younger and could surpass Adam in wins with time if they maintain their form (e.g. John Rahm, Justin Thomas, Bryson DeChambeau). It could also be a good reflection on Adam's ability to close out tournaments and get the wins. Jim Furyk and Steve Stricker have better strokes gained averages but trail Adam in wins.
 
 ### In which part of the game does Adam Scott performs best?
 
@@ -166,7 +166,7 @@ sg <- sg_tee %>% left_join(sg_approach,by = "player_name") %>% left_join(sg_arou
 ggplot(sg, aes(x=sg_long, y=sg_short,label=player_name)) +
   geom_point() + 
   geom_label(data=sg %>% filter(sg_total>=1.1 & player_name!="Paul Casey"), aes(fill=factor(is_AS)), nudge_x = 0.05, nudge_y = 0.05) +
-  xlim(-1,2) + ylim(-1,1) + my_theme() + scale_fill_manual(values = c("white","#eddbf4")) + theme(legend.position = "none")
+  xlim(-1,2) + ylim(-1,1) + my_theme() + scale_fill_manual(values = c("white","#eddbf4")) + theme(legend.position = "none") + xlab("av. long game strokes gained") + ylab("av. short game strokes gained")
 ```
 Adam Scott over-performs in the long game and under-performs in the short game. We can break down further and first look at strokes gained long, i.e. strokes gained off-the-tee + strokes approach-to-green:
 
@@ -189,7 +189,7 @@ as_short
 ```
 ### How Adam Scott's strokes gained values have evolved throughout the years?
 
-So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of each strokes gained category over the years:
+So far, we have looked at average values for the 2004-2021 period. Let's now look at the trends in Adam's game. The below chart shows the evolution of the yearly average of each strokes gained category:
 
 ```{r, echo=FALSE}
 as_tee <-strokes_gained_all_tee %>% filter(player_name=="Adam Scott")
@@ -200,14 +200,14 @@ as_sg_hist <- tibble(year=as_tee$year,tee=as_tee$average,approach=as_app$average
 data <- melt(as_sg_hist, id.vars = "year")
 
 ggplot(data, aes(fill=variable, y=value, x=year)) +
-    geom_bar(position="dodge", stat="identity") + my_theme() + ylab("strokes gained") +  scale_fill_brewer(palette = "PRGn")
+    geom_bar(position="dodge", stat="identity") + my_theme() + ylab("av. strokes gained") +  scale_fill_brewer(palette = "PRGn")
 ```
 
 Adam seemed to have struggled a lot with putting around 2010. Noticeably in the recent years, his game has been more constantly above average in all aspects. His strong suits have become less dominant (long game) but putting is not hurting him as much. 2021 weakness around the green is likely due to small samples.
 
 ```{r, echo=FALSE}
 ggplot(data[year>=2016], aes(fill=variable, y=value, x=year)) +
-    geom_bar(position="dodge", stat="identity") + my_theme() +  scale_x_continuous(breaks = 2016:2021) + ylab("strokes gained") +  scale_fill_brewer(palette = "PRGn")
+    geom_bar(position="dodge", stat="identity") + my_theme() +  scale_x_continuous(breaks = 2016:2021) + ylab("av. strokes gained") +  scale_fill_brewer(palette = "PRGn")
 ```
 
 If Adam manages to keep up the positive trend in putting and maintain strengths in other areas, more wins and top 10s should come his way!! 

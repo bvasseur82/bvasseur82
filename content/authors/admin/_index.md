@@ -38,9 +38,9 @@ superuser: true
 title: Benoit Vasseur
 ---
 
-I am currently a credit analyst at Scope Ratings in Frankfurt (Germany) and my role is to provide accurate, robust and unbiased opinions on the credit quality of various debt issuers. I specialise in structured finance and have expert knowledge on securitisation, structured products and derivatives, used as financing or investment tools.
+I am currently a credit analyst at Scope Ratings in Frankfurt (Germany). I specialise in structured finance and have expert knowledge on securitisation, structured products and derivatives, used as financing or investment tools.
 
-Prior to joining Scope Ratings, I have worked ca. 11 years at J.P. Morgan in London in a structuring and marketing role focused on large institutional and corporate clients. This position has been a fantastic opportunity to get exposure to various fields of the financial markets and learn from very knowledgeable colleagues from all backgrounds. My main achievements were to create long-lasting relationships of trust and confidence with clients and colleagues. It helped me broaden my skill sets and not only rely on technical or theoretical knowledge.
+Prior to joining Scope Ratings, I have worked ca. 11 years at J.P. Morgan in London in a structuring and marketing role focused on large institutional and corporate clients. This position has been a fantastic opportunity to get exposure to various fields of the financial markets and learn from very knowledgeable colleagues from all backgrounds.
 
 I believe education and open-mindedness are key elements to a successful career. Throughout the years I have always tried to explore new areas and learn from my colleagues. Currently, I am developing my programming and data science knowledge using R and Python.
 
